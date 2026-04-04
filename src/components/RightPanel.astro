@@ -9,7 +9,7 @@ interface Props {
 
 const { lang = 'zh' } = Astro.props;
 const isZh = lang === 'zh';
-const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
+const sortedProjects = [...projects].sort((a, b) => a.order - b.order).filter(p => p.status !== 'coming_soon');
 const hasPress = press.length > 0;
 ---
 
@@ -17,12 +17,16 @@ const hasPress = press.length > 0;
   <div class="section-header">
     <span class="section-label">{isZh ? '作品' : 'Projects'}</span>
     <div class="section-line"></div>
-    <span class="section-count">{String(sortedProjects.length).padStart(2, '0')}</span>
+    <span class="section-count">{String(sortedProjects.length).padStart(2, '0')}+</span>
   </div>
 
   {sortedProjects.map((project, i) => (
     <ProjectCard project={project} isFirst={i === 0} lang={lang} />
   ))}
+
+  <div class="coming-soon-hint">
+    {isZh ? '更多灵感和作品正在路上 ···' : 'More ideas and projects on the way ···'}
+  </div>
 
   {hasPress && (
     <div class="press-section">
@@ -84,6 +88,14 @@ const hasPress = press.length > 0;
     font-size: 11px;
     color: var(--color-text-tertiary);
     font-family: 'JetBrains Mono', monospace;
+  }
+
+  .coming-soon-hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    padding: 32px 0;
+    letter-spacing: 1px;
   }
 
   .press-section {
