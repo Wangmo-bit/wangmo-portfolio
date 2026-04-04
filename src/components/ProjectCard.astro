@@ -11,6 +11,7 @@ interface Props {
     status: string;
     theme_color: string;
     icon_emoji: string;
+    icon_image?: string;
     icon_bg: string;
     icon_border: string;
     platform: string;
@@ -48,7 +49,11 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
 >
   <div class="card-header">
     <div class="card-icon" style={`background: ${project.icon_bg}; border: 1px solid ${project.icon_border};`}>
-      <span>{project.icon_emoji}</span>
+      {project.icon_image ? (
+        <img src={project.icon_image} alt={name} class="card-icon-img" />
+      ) : (
+        <span>{project.icon_emoji}</span>
+      )}
     </div>
     <div class="card-info">
       <div class="card-name">
@@ -167,6 +172,13 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
     justify-content: center;
     font-size: 26px;
     position: relative;
+  }
+
+  .card-icon-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: cover;
   }
 
   .card-icon::after {
@@ -401,6 +413,10 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
       height: 48px;
       border-radius: 12px;
       font-size: 22px;
+    }
+
+    .card-icon-img {
+      border-radius: 12px;
     }
 
     .card-name {

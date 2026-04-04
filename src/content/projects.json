@@ -10,6 +10,7 @@
     "status": "developing",
     "theme_color": "#00F0FF",
     "icon_emoji": "⚡",
+    "icon_image": "/icons/cyberlife-icon.png",
     "icon_bg": "linear-gradient(135deg, #00252a, #001218)",
     "icon_border": "rgba(0,240,255,0.15)",
     "platform": "iOS",
