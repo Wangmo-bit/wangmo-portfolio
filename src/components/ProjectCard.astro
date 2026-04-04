@@ -15,8 +15,8 @@ interface Props {
     icon_bg: string;
     icon_border: string;
     platform: string;
-    screenshots_zh: string[];
-    screenshots_en: string[];
+    screenshots_zh: (string | { label: string; image: string })[];
+    screenshots_en: (string | { label: string; image: string })[];
     tech_stack: string[];
     links: Record<string, string>;
   };
@@ -73,11 +73,15 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
   </div>
 
   <div class="screenshot-strip">
-    {screenshots.map((label: string) => (
-      <div class:list={['screenshot', { 'coming-soon': isComingSoon }]}>
-        {label}
-      </div>
-    ))}
+    {screenshots.map((item: string | { label: string; image: string }) => {
+      const label = typeof item === 'string' ? item : item.label;
+      const image = typeof item === 'string' ? null : item.image;
+      return (
+        <div class:list={['screenshot', { 'coming-soon': isComingSoon }]}>
+          {image ? <img src={image} alt={label} class="screenshot-img" /> : label}
+        </div>
+      );
+    })}
   </div>
 
   <div class="card-detail">
@@ -294,6 +298,13 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
     transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
+  }
+
+  .screenshot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   .screenshot:hover {
