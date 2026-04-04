@@ -41,13 +41,13 @@
 
 ## M4 — 媒体报道 + SEO
 
-- [ ] 媒体报道板块组件
-- [ ] press.json 数据渲染，空数据时隐藏
-- [ ] 报道链接可点击跳转（新标签页）
-- [ ] SEO：title、description、keywords meta 标签
-- [ ] Open Graph 标签（微信/Twitter 分享卡片）
-- [ ] favicon + apple-touch-icon
-- [ ] robots.txt + sitemap.xml
+- [x] 媒体报道板块组件
+- [x] press.json 数据渲染，空数据时隐藏
+- [x] 报道链接可点击跳转（新标签页）
+- [x] SEO：title、description、keywords meta 标签
+- [x] Open Graph 标签（微信/Twitter 分享卡片）
+- [x] favicon + apple-touch-icon
+- [x] robots.txt + sitemap.xml
 - [ ] 验收：分享链接有预览卡片，SEO 标签完整
 
 ## M5 — 响应式 + 打磨上线
