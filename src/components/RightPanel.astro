@@ -2,22 +2,28 @@
 import ProjectCard from './ProjectCard.astro';
 import projects from '../content/projects.json';
 
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+const isZh = lang === 'zh';
 const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
 ---
 
 <main class="right-panel" id="rightPanel">
   <div class="section-header">
-    <span class="section-label" id="sectionProjectsLabel">作品</span>
+    <span class="section-label">{isZh ? '作品' : 'Projects'}</span>
     <div class="section-line"></div>
     <span class="section-count">{String(sortedProjects.length).padStart(2, '0')}</span>
   </div>
 
   {sortedProjects.map((project, i) => (
-    <ProjectCard project={project} isFirst={i === 0} />
+    <ProjectCard project={project} isFirst={i === 0} lang={lang} />
   ))}
 
   <div class="footer">
-    <span id="footerText">© 2026 王墨 · 用好奇心搭建</span>
+    <span>{isZh ? '© 2026 王墨 · 用好奇心搭建' : '© 2026 Mo Wang · Built with curiosity'}</span>
   </div>
 </main>
 

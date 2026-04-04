@@ -20,18 +20,25 @@ interface Props {
     links: Record<string, string>;
   };
   isFirst?: boolean;
+  lang?: 'zh' | 'en';
 }
 
-const { project, isFirst = false } = Astro.props;
+const { project, isFirst = false, lang = 'zh' } = Astro.props;
+const isZh = lang === 'zh';
 
-const statusMap: Record<string, { zh: string; class: string }> = {
-  released: { zh: '已上架', class: 'status-released' },
-  developing: { zh: '开发中', class: 'status-dev' },
-  coming_soon: { zh: '即将推出', class: 'status-soon' },
+const statusMap: Record<string, { zh: string; en: string; class: string }> = {
+  released: { zh: '已上架', en: 'Released', class: 'status-released' },
+  developing: { zh: '开发中', en: 'In Dev', class: 'status-dev' },
+  coming_soon: { zh: '即将推出', en: 'Coming Soon', class: 'status-soon' },
 };
 
 const statusInfo = statusMap[project.status] || statusMap.developing;
+const statusText = isZh ? statusInfo.zh : statusInfo.en;
 const isComingSoon = project.status === 'coming_soon';
+const name = isZh ? project.name_zh : project.name_en;
+const tagline = isZh ? project.tagline_zh : project.tagline_en;
+const description = isZh ? project.description_zh : project.description_en;
+const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
 ---
 
 <div
@@ -44,16 +51,16 @@ const isComingSoon = project.status === 'coming_soon';
       <span>{project.icon_emoji}</span>
     </div>
     <div class="card-info">
-      <div class="card-name" data-zh={project.name_zh} data-en={project.name_en}>
-        {project.name_zh}
-        {project.name_en !== project.name_zh && <small>{project.name_en}</small>}
+      <div class="card-name">
+        {name}
+        {project.name_en !== project.name_zh && isZh && <small>{project.name_en}</small>}
       </div>
-      <div class="card-desc" data-zh={project.tagline_zh} data-en={project.tagline_en}>
-        {project.tagline_zh}
+      <div class="card-desc">
+        {tagline}
       </div>
       <div class="card-meta">
-        <div class:list={['card-status', statusInfo.class]} data-zh={statusInfo.zh}>
-          {statusInfo.zh}
+        <div class:list={['card-status', statusInfo.class]}>
+          {statusText}
         </div>
         {project.platform && <span class="card-platform">{project.platform}</span>}
       </div>
@@ -61,7 +68,7 @@ const isComingSoon = project.status === 'coming_soon';
   </div>
 
   <div class="screenshot-strip">
-    {project.screenshots_zh.map((label: string) => (
+    {screenshots.map((label: string) => (
       <div class:list={['screenshot', { 'coming-soon': isComingSoon }]}>
         {label}
       </div>
@@ -70,8 +77,8 @@ const isComingSoon = project.status === 'coming_soon';
 
   <div class="card-detail">
     <div class="detail-inner">
-      <div class="detail-text" data-zh={project.description_zh} data-en={project.description_en}>
-        {project.description_zh}
+      <div class="detail-text">
+        {description}
       </div>
       <div class="detail-section-label">Tech Stack</div>
       <div class="tech-stack">
@@ -83,7 +90,7 @@ const isComingSoon = project.status === 'coming_soon';
         <div class="detail-links">
           {project.links.appstore !== undefined && (
             <a class="detail-link primary" href={project.links.appstore || '#'}>
-              {project.links.appstore ? 'App Store →' : 'App Store (即将上架) →'}
+              {project.links.appstore ? 'App Store →' : (isZh ? 'App Store (即将上架) →' : 'App Store (Coming Soon) →')}
             </a>
           )}
           {project.links.github !== undefined && (

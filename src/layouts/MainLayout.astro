@@ -37,6 +37,25 @@ const {
     />
 
     <title>{title}</title>
+
+    <!-- Language auto-detect: redirect first-time visitors based on browser lang -->
+    <script is:inline>
+      (function() {
+        var saved = localStorage.getItem('lang');
+        if (saved) return; // user already chose
+        var path = location.pathname;
+        var isRoot = path === '/' || path === '/index.html';
+        var isEn = path.startsWith('/en');
+        var browserEn = !navigator.language.startsWith('zh');
+        if (browserEn && isRoot) {
+          localStorage.setItem('lang', 'en');
+          location.replace('/en/');
+        } else if (!browserEn && isEn) {
+          localStorage.setItem('lang', 'zh');
+          location.replace('/');
+        }
+      })();
+    </script>
   </head>
   <body>
     <slot />

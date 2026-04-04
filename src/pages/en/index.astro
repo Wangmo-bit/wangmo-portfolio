@@ -1,13 +1,13 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import LeftPanel from '../components/LeftPanel.astro';
-import RightPanel from '../components/RightPanel.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import LeftPanel from '../../components/LeftPanel.astro';
+import RightPanel from '../../components/RightPanel.astro';
 ---
 
-<MainLayout title="王墨的赛博分身 — Mo Wang" lang="zh">
+<MainLayout title="Mo Wang's Cyber Avatar" description="Mo Wang — Product creator, founder of Dry Capital. Portfolio and personal intro." lang="en">
   <div class="container">
-    <LeftPanel lang="zh" />
-    <RightPanel lang="zh" />
+    <LeftPanel lang="en" />
+    <RightPanel lang="en" />
   </div>
 </MainLayout>
 
@@ -25,7 +25,6 @@ import RightPanel from '../components/RightPanel.astro';
 
   let currentTheme = '#00F0FF';
 
-  // Scroll-based theme switching
   function updateTheme() {
     const panelRect = rightPanel.getBoundingClientRect();
     const centerY = panelRect.top + panelRect.height * 0.4;
@@ -48,7 +47,6 @@ import RightPanel from '../components/RightPanel.astro';
         currentTheme = theme;
         leftPanel.style.setProperty('--current-theme', theme);
       }
-
       cards.forEach(c => c.classList.remove('active'));
       closestCard.classList.add('active');
     }
@@ -56,7 +54,6 @@ import RightPanel from '../components/RightPanel.astro';
 
   rightPanel.addEventListener('scroll', updateTheme);
 
-  // Card detail toggle
   cards.forEach(card => {
     card.addEventListener('click', () => {
       const wasExpanded = card.classList.contains('expanded');
