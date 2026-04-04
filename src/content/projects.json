@@ -35,47 +35,5 @@
       "github": ""
     },
     "order": 1
-  },
-  {
-    "id": "pawprint",
-    "name_zh": "爪印档案",
-    "name_en": "PawPrint Archive",
-    "tagline_zh": "为猫狗家长打造的宠物信息管理工具 — 记录每一个珍贵瞬间，让每一个爪印都有迹可循。",
-    "tagline_en": "A pet companion app for cat & dog parents — capture every precious moment, make every paw print traceable.",
-    "description_zh": "爪印档案帮你管理毛孩子的一切：基本信息、疫苗记录、体重变化、日常照片和纪念时刻。三只猫的主人亲自打造，懂你的需求。",
-    "description_en": "PawPrint Archive helps you manage everything about your furry friends: basic info, vaccine records, weight tracking, daily photos, and memorial moments. Built by a three-cat parent who truly gets it.",
-    "status": "coming_soon",
-    "theme_color": "#FF8C42",
-    "icon_emoji": "🐾",
-    "icon_bg": "linear-gradient(135deg, #2a1a0a, #1a0f04)",
-    "icon_border": "rgba(255,140,66,0.15)",
-    "platform": "",
-    "platforms": [],
-    "screenshots_zh": ["概念图", "概念图", "概念图"],
-    "screenshots_en": ["Concept", "Concept", "Concept"],
-    "tech_stack": ["待定"],
-    "links": {},
-    "order": 2
-  },
-  {
-    "id": "lorebook",
-    "name_zh": "Lorebook",
-    "name_en": "Lorebook",
-    "tagline_zh": "你的电子书与漫画私人管理工具 — 上传、整理、阅读。不是书城，是你的私人书架。",
-    "tagline_en": "Your personal ebook & manga manager — upload, organize, read. Not a bookstore, but your private shelf.",
-    "description_zh": "Lorebook 是一个纯工具型电子书和漫画管理器。你负责上传和整理自己的收藏，Lorebook 负责提供优雅的阅读和管理体验。",
-    "description_en": "Lorebook is a pure utility for managing ebooks and manga. You bring the collection, Lorebook provides the elegant reading and organizing experience.",
-    "status": "coming_soon",
-    "theme_color": "#8B5CF6",
-    "icon_emoji": "📖",
-    "icon_bg": "linear-gradient(135deg, #1a1028, #100a1a)",
-    "icon_border": "rgba(139,92,246,0.15)",
-    "platform": "",
-    "platforms": [],
-    "screenshots_zh": ["概念图", "概念图", "概念图"],
-    "screenshots_en": ["Concept", "Concept", "Concept"],
-    "tech_stack": ["待定"],
-    "links": {},
-    "order": 3
   }
 ]
