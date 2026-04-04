@@ -1,10 +1,69 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import LeftPanel from '../components/LeftPanel.astro';
+import RightPanel from '../components/RightPanel.astro';
 ---
 
 <MainLayout title="王墨的赛博分身 — Mo Wang">
-  <main class="h-screen flex flex-col items-center justify-center bg-bg-deep text-text-primary">
-    <h1 class="text-3xl font-bold mb-2">王墨的赛博分身</h1>
-    <p class="text-text-secondary text-sm">wangmo.tech — 建设中</p>
-  </main>
+  <div class="container">
+    <LeftPanel />
+    <RightPanel />
+  </div>
 </MainLayout>
+
+<style>
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+</style>
+
+<script>
+  const leftPanel = document.getElementById('leftPanel')!;
+  const rightPanel = document.getElementById('rightPanel')!;
+  const cards = document.querySelectorAll<HTMLElement>('.project-card');
+
+  let currentTheme = '#00F0FF';
+
+  // Scroll-based theme switching
+  function updateTheme() {
+    const panelRect = rightPanel.getBoundingClientRect();
+    const centerY = panelRect.top + panelRect.height * 0.4;
+    let closestCard: HTMLElement | null = null;
+    let closestDist = Infinity;
+
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const dist = Math.abs(cardCenter - centerY);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestCard = card;
+      }
+    });
+
+    if (closestCard) {
+      const theme = (closestCard as HTMLElement).dataset.theme!;
+      if (theme !== currentTheme) {
+        currentTheme = theme;
+        leftPanel.style.setProperty('--current-theme', theme);
+      }
+
+      cards.forEach(c => c.classList.remove('active'));
+      closestCard.classList.add('active');
+    }
+  }
+
+  rightPanel.addEventListener('scroll', updateTheme);
+
+  // Card detail toggle
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const wasExpanded = card.classList.contains('expanded');
+      cards.forEach(c => c.classList.remove('expanded'));
+      if (!wasExpanded) {
+        card.classList.add('expanded');
+      }
+    });
+  });
+</script>

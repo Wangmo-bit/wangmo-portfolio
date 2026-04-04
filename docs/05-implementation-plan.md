@@ -2,12 +2,12 @@
 
 ## M0 — 项目骨架
 
-- [ ] Astro 项目初始化 + TypeScript
-- [ ] Tailwind CSS 集成 + 全局样式（配色变量、字体）
-- [ ] GitHub 仓库创建
-- [ ] GitHub Actions 部署流水线（推 main → 自动构建 → GitHub Pages）
-- [ ] 域名 wangmo.tech 绑定 + HTTPS
-- [ ] 验收：`pnpm dev` 可运行，推代码后自动部署
+- [x] Astro 项目初始化 + TypeScript
+- [x] Tailwind CSS 集成 + 全局样式（配色变量、字体）
+- [x] GitHub 仓库创建
+- [x] GitHub Actions 部署流水线（推 main → 自动构建 → GitHub Pages）
+- [x] 域名 wangmo.tech 绑定 + HTTPS
+- [x] 验收：`pnpm dev` 可运行，推代码后自动部署
 
 ## M1 — 核心页面
 

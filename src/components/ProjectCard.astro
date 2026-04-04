@@ -1,0 +1,386 @@
+---
+interface Props {
+  project: {
+    id: string;
+    name_zh: string;
+    name_en: string;
+    tagline_zh: string;
+    tagline_en: string;
+    description_zh: string;
+    description_en: string;
+    status: string;
+    theme_color: string;
+    icon_emoji: string;
+    icon_bg: string;
+    icon_border: string;
+    platform: string;
+    screenshots_zh: string[];
+    screenshots_en: string[];
+    tech_stack: string[];
+    links: Record<string, string>;
+  };
+  isFirst?: boolean;
+}
+
+const { project, isFirst = false } = Astro.props;
+
+const statusMap: Record<string, { zh: string; class: string }> = {
+  released: { zh: '已上架', class: 'status-released' },
+  developing: { zh: '开发中', class: 'status-dev' },
+  coming_soon: { zh: '即将推出', class: 'status-soon' },
+};
+
+const statusInfo = statusMap[project.status] || statusMap.developing;
+const isComingSoon = project.status === 'coming_soon';
+---
+
+<div
+  class:list={['project-card', { active: isFirst }]}
+  style={`--card-theme: ${project.theme_color};`}
+  data-theme={project.theme_color}
+>
+  <div class="card-header">
+    <div class="card-icon" style={`background: ${project.icon_bg}; border: 1px solid ${project.icon_border};`}>
+      <span>{project.icon_emoji}</span>
+    </div>
+    <div class="card-info">
+      <div class="card-name" data-zh={project.name_zh} data-en={project.name_en}>
+        {project.name_zh}
+        {project.name_en !== project.name_zh && <small>{project.name_en}</small>}
+      </div>
+      <div class="card-desc" data-zh={project.tagline_zh} data-en={project.tagline_en}>
+        {project.tagline_zh}
+      </div>
+      <div class="card-meta">
+        <div class:list={['card-status', statusInfo.class]} data-zh={statusInfo.zh}>
+          {statusInfo.zh}
+        </div>
+        {project.platform && <span class="card-platform">{project.platform}</span>}
+      </div>
+    </div>
+  </div>
+
+  <div class="screenshot-strip">
+    {project.screenshots_zh.map((label: string) => (
+      <div class:list={['screenshot', { 'coming-soon': isComingSoon }]}>
+        {label}
+      </div>
+    ))}
+  </div>
+
+  <div class="card-detail">
+    <div class="detail-inner">
+      <div class="detail-text" data-zh={project.description_zh} data-en={project.description_en}>
+        {project.description_zh}
+      </div>
+      <div class="detail-section-label">Tech Stack</div>
+      <div class="tech-stack">
+        {project.tech_stack.map((tech: string) => (
+          <span class="tech-tag">{tech}</span>
+        ))}
+      </div>
+      {Object.keys(project.links).length > 0 && (
+        <div class="detail-links">
+          {project.links.appstore !== undefined && (
+            <a class="detail-link primary" href={project.links.appstore || '#'}>
+              {project.links.appstore ? 'App Store →' : 'App Store (即将上架) →'}
+            </a>
+          )}
+          {project.links.github !== undefined && (
+            <a class="detail-link" href={project.links.github || '#'}>GitHub →</a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: slideInRight 0.5s ease forwards;
+  }
+
+  .project-card:nth-of-type(1) { animation-delay: 0.3s; }
+  .project-card:nth-of-type(2) { animation-delay: 0.45s; }
+  .project-card:nth-of-type(3) { animation-delay: 0.6s; }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-theme), transparent);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--card-theme) 4%, transparent), transparent);
+    opacity: 0;
+    transition: opacity 0.35s;
+    pointer-events: none;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--card-theme) 30%, var(--color-border));
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px color-mix(in srgb, var(--card-theme) 8%, transparent);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+  .project-card:hover::after { opacity: 1; }
+
+  .project-card.active {
+    border-color: color-mix(in srgb, var(--card-theme) 25%, var(--color-border));
+  }
+  .project-card.active::before { opacity: 0.6; }
+
+  /* Card header */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    position: relative;
+  }
+
+  .card-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    box-shadow: inset 0 0 20px color-mix(in srgb, var(--card-theme) 10%, transparent);
+    pointer-events: none;
+  }
+
+  .card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .card-name small {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-text-tertiary);
+    margin-left: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .status-dev {
+    background: color-mix(in srgb, var(--card-theme) 10%, transparent);
+    color: var(--card-theme);
+    border: 1px solid color-mix(in srgb, var(--card-theme) 20%, transparent);
+  }
+
+  .status-dev::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--card-theme);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .status-soon {
+    color: var(--color-text-tertiary);
+    border: 1px dashed var(--color-border-hover);
+    background: transparent;
+  }
+
+  .status-released {
+    background: color-mix(in srgb, #22c55e 10%, transparent);
+    color: #22c55e;
+    border: 1px solid color-mix(in srgb, #22c55e 20%, transparent);
+  }
+
+  .card-platform {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+  }
+
+  /* Screenshot strip */
+  .screenshot-strip {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x mandatory;
+    position: relative;
+    z-index: 1;
+  }
+
+  .screenshot {
+    width: 200px;
+    height: 130px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1a1a2e, #24243e);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    font-size: 11px;
+    border: 1px solid var(--color-border-hover);
+    scroll-snap-align: start;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .screenshot:hover {
+    transform: scale(1.03);
+  }
+
+  .screenshot.coming-soon::after {
+    content: 'COMING SOON';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--color-text-tertiary);
+    background: rgba(7, 7, 12, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Detail section */
+  .card-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-card.expanded .card-detail {
+    max-height: 600px;
+  }
+
+  .detail-inner {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .detail-text {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .detail-section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .tech-stack {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .tech-tag {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .detail-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .detail-link {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    transition: all 0.25s ease;
+  }
+
+  .detail-link:hover {
+    border-color: var(--card-theme);
+    color: var(--card-theme);
+  }
+
+  .detail-link.primary {
+    background: color-mix(in srgb, var(--card-theme) 8%, transparent);
+    border-color: color-mix(in srgb, var(--card-theme) 25%, transparent);
+    color: var(--card-theme);
+  }
+</style>

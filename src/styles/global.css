@@ -18,13 +18,6 @@
   --color-theme-purple: #8B5CF6;
 }
 
-@font-face {
-  font-family: 'Space Grotesk';
-  font-style: normal;
-  font-display: swap;
-  src: url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-}
-
 html {
   font-family: 'Space Grotesk', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
   background: var(--color-bg-deep);
@@ -36,4 +29,54 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+}
+
+/* Scrollbar */
+.right-panel::-webkit-scrollbar { width: 3px; }
+.right-panel::-webkit-scrollbar-track { background: transparent; }
+.right-panel::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.screenshot-strip::-webkit-scrollbar { height: 2px; }
+.screenshot-strip::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+/* Avatar breathing glow */
+@keyframes avatar-breathe {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50% { opacity: 0.22; transform: scale(1.06); }
+}
+
+@keyframes avatar-ring-breathe {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.35; }
+}
+
+/* Status dot pulse */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Page load animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
