@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base colors */
+  --color-bg-deep: #07070c;
+  --color-bg-elevated: #0e0e16;
+  --color-bg-card: #13131f;
+  --color-bg-card-hover: #1a1a2a;
+  --color-text-primary: #e8e8ed;
+  --color-text-secondary: #6b6b80;
+  --color-text-tertiary: #45455a;
+  --color-border: #1e1e30;
+  --color-border-hover: #2e2e48;
+
+  /* Project theme colors */
+  --color-theme-cyan: #00F0FF;
+  --color-theme-orange: #FF8C42;
+  --color-theme-purple: #8B5CF6;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+}
+
+html {
+  font-family: 'Space Grotesk', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
+  background: var(--color-bg-deep);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}

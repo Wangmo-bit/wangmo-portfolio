@@ -1,0 +1,19 @@
+{
+  "name": "wangmo-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mo Wang's personal portfolio",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "author": "Mo Wang",
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.3",
+    "tailwindcss": "^4.2.2"
+  }
+}
