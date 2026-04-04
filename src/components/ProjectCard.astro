@@ -390,4 +390,53 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
     border-color: color-mix(in srgb, var(--card-theme) 25%, transparent);
     color: var(--card-theme);
   }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .project-card {
+      padding: 20px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .project-card::before,
+    .project-card::after {
+      display: none;
+    }
+
+    .card-header { gap: 14px; }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 22px;
+    }
+
+    .card-name {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+    .card-name small { font-size: 11px; margin-left: 6px; }
+
+    .card-desc {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .card-status { font-size: 10px; padding: 3px 10px; }
+
+    .screenshot {
+      width: 160px;
+      height: 104px;
+      border-radius: 8px;
+      font-size: 10px;
+    }
+
+    .screenshot-strip { gap: 8px; margin-top: 14px; }
+
+    .detail-text { font-size: 13px; }
+    .tech-tag { font-size: 10px; padding: 4px 10px; }
+    .detail-link { font-size: 12px; padding: 6px 16px; }
+  }
 </style>

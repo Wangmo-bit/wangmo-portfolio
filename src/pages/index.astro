@@ -16,6 +16,21 @@ import RightPanel from '../components/RightPanel.astro';
     display: flex;
     height: 100vh;
   }
+
+  @media (max-width: 1023px) and (min-width: 768px) {
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+      min-height: 100vh;
+    }
+  }
 </style>
 
 <script>
@@ -25,17 +40,20 @@ import RightPanel from '../components/RightPanel.astro';
 
   let currentTheme = '#00F0FF';
 
-  // Scroll-based theme switching
   function updateTheme() {
-    const panelRect = rightPanel.getBoundingClientRect();
-    const centerY = panelRect.top + panelRect.height * 0.4;
+    const isMobile = window.innerWidth < 768;
+    const scrollTarget = isMobile ? document.documentElement : rightPanel;
+    const viewportCenter = isMobile
+      ? window.innerHeight * 0.4
+      : rightPanel.getBoundingClientRect().top + rightPanel.getBoundingClientRect().height * 0.4;
+
     let closestCard: HTMLElement | null = null;
     let closestDist = Infinity;
 
     cards.forEach(card => {
       const rect = card.getBoundingClientRect();
       const cardCenter = rect.top + rect.height / 2;
-      const dist = Math.abs(cardCenter - centerY);
+      const dist = Math.abs(cardCenter - viewportCenter);
       if (dist < closestDist) {
         closestDist = dist;
         closestCard = card;
@@ -48,15 +66,14 @@ import RightPanel from '../components/RightPanel.astro';
         currentTheme = theme;
         leftPanel.style.setProperty('--current-theme', theme);
       }
-
       cards.forEach(c => c.classList.remove('active'));
       closestCard.classList.add('active');
     }
   }
 
   rightPanel.addEventListener('scroll', updateTheme);
+  window.addEventListener('scroll', updateTheme);
 
-  // Card detail toggle
   cards.forEach(card => {
     card.addEventListener('click', () => {
       const wasExpanded = card.classList.contains('expanded');
