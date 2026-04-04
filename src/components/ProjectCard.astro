@@ -80,22 +80,12 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
       <div class="detail-text">
         {description}
       </div>
-      <div class="detail-section-label">Tech Stack</div>
-      <div class="tech-stack">
-        {project.tech_stack.map((tech: string) => (
-          <span class="tech-tag">{tech}</span>
-        ))}
-      </div>
-      {Object.keys(project.links).length > 0 && (
-        <div class="detail-links">
-          {project.links.appstore !== undefined && (
-            <a class="detail-link primary" href={project.links.appstore || '#'}>
-              {project.links.appstore ? 'App Store →' : (isZh ? 'App Store (即将上架) →' : 'App Store (Coming Soon) →')}
-            </a>
-          )}
-          {project.links.github !== undefined && (
-            <a class="detail-link" href={project.links.github || '#'}>GitHub →</a>
-          )}
+      {project.platforms && project.platforms.length > 0 && (
+        <div class="detail-section-label">{isZh ? '平台' : 'Platforms'}</div>
+        <div class="tech-stack">
+          {project.platforms.map((p: string) => (
+            <span class="tech-tag">{p}</span>
+          ))}
         </div>
       )}
     </div>
