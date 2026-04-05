@@ -47,12 +47,21 @@
     "status": "developing",
     "theme_color": "#8B5CF6",
     "icon_emoji": "🧩",
+    "icon_image": "/icons/skillpal-icon.png",
     "icon_bg": "linear-gradient(135deg, #1a1028, #100a1a)",
     "icon_border": "rgba(139,92,246,0.15)",
     "platform": "Web",
     "platforms": ["Web"],
-    "screenshots_zh": [],
-    "screenshots_en": [],
+    "screenshots_zh": [
+      {"label": "发现 Skills", "image": "/screenshots/skillpal-discover.png"},
+      {"label": "浏览管理", "image": "/screenshots/skillpal-browse.png"},
+      {"label": "跨平台适配", "image": "/screenshots/skillpal-adapt.png"}
+    ],
+    "screenshots_en": [
+      {"label": "Discover", "image": "/screenshots/skillpal-discover.png"},
+      {"label": "Browse", "image": "/screenshots/skillpal-browse.png"},
+      {"label": "Cross-platform", "image": "/screenshots/skillpal-adapt.png"}
+    ],
     "tech_stack": ["Next.js", "React", "Supabase", "Tailwind CSS"],
     "links": {},
     "order": 2
