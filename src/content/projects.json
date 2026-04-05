@@ -10,24 +10,24 @@
     "status": "developing",
     "theme_color": "#00F0FF",
     "icon_emoji": "⚡",
-    "icon_image": "/icons/cyberlife-icon.png",
+    "icon_image": "/icons/cyberlife-icon.jpg",
     "icon_bg": "linear-gradient(135deg, #00252a, #001218)",
     "icon_border": "rgba(0,240,255,0.15)",
     "platform": "iOS · Android",
     "platforms": ["iOS", "Android"],
     "screenshots_zh": [
-      {"label": "启动页", "image": "/screenshots/concept-launch.png"},
-      {"label": "芯片墙", "image": "/screenshots/concept-chips.png"},
-      {"label": "订阅列表", "image": "/screenshots/concept-list.png"},
-      {"label": "仪表盘", "image": "/screenshots/concept-dashboard.png"},
-      {"label": "订阅详情", "image": "/screenshots/concept-detail.png"}
+      {"label": "启动页", "image": "/screenshots/concept-launch.jpg"},
+      {"label": "芯片墙", "image": "/screenshots/concept-chips.jpg"},
+      {"label": "订阅列表", "image": "/screenshots/concept-list.jpg"},
+      {"label": "仪表盘", "image": "/screenshots/concept-dashboard.jpg"},
+      {"label": "订阅详情", "image": "/screenshots/concept-detail.jpg"}
     ],
     "screenshots_en": [
-      {"label": "Launch", "image": "/screenshots/concept-launch.png"},
-      {"label": "Chip Wall", "image": "/screenshots/concept-chips.png"},
-      {"label": "Subscriptions", "image": "/screenshots/concept-list.png"},
-      {"label": "Dashboard", "image": "/screenshots/concept-dashboard.png"},
-      {"label": "Detail", "image": "/screenshots/concept-detail.png"}
+      {"label": "Launch", "image": "/screenshots/concept-launch.jpg"},
+      {"label": "Chip Wall", "image": "/screenshots/concept-chips.jpg"},
+      {"label": "Subscriptions", "image": "/screenshots/concept-list.jpg"},
+      {"label": "Dashboard", "image": "/screenshots/concept-dashboard.jpg"},
+      {"label": "Detail", "image": "/screenshots/concept-detail.jpg"}
     ],
     "tech_stack": ["Swift 6", "SwiftUI", "SwiftData", "CloudKit", "StoreKit 2", "Swift Charts"],
     "links": {
@@ -47,20 +47,20 @@
     "status": "developing",
     "theme_color": "#8B5CF6",
     "icon_emoji": "🧩",
-    "icon_image": "/icons/skillpal-icon.png",
+    "icon_image": "/icons/skillpal-icon.jpg",
     "icon_bg": "linear-gradient(135deg, #1a1028, #100a1a)",
     "icon_border": "rgba(139,92,246,0.15)",
     "platform": "Web",
     "platforms": ["Web"],
     "screenshots_zh": [
-      {"label": "发现 Skills", "image": "/screenshots/skillpal-discover.png"},
-      {"label": "浏览管理", "image": "/screenshots/skillpal-browse.png"},
-      {"label": "跨平台适配", "image": "/screenshots/skillpal-adapt.png"}
+      {"label": "发现 Skills", "image": "/screenshots/skillpal-discover.jpg"},
+      {"label": "浏览管理", "image": "/screenshots/skillpal-browse.jpg"},
+      {"label": "跨平台适配", "image": "/screenshots/skillpal-adapt.jpg"}
     ],
     "screenshots_en": [
-      {"label": "Discover", "image": "/screenshots/skillpal-discover.png"},
-      {"label": "Browse", "image": "/screenshots/skillpal-browse.png"},
-      {"label": "Cross-platform", "image": "/screenshots/skillpal-adapt.png"}
+      {"label": "Discover", "image": "/screenshots/skillpal-discover.jpg"},
+      {"label": "Browse", "image": "/screenshots/skillpal-browse.jpg"},
+      {"label": "Cross-platform", "image": "/screenshots/skillpal-adapt.jpg"}
     ],
     "tech_stack": ["Next.js", "React", "Supabase", "Tailwind CSS"],
     "links": {},
