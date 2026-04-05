@@ -35,5 +35,26 @@
       "github": ""
     },
     "order": 1
+  },
+  {
+    "id": "skillpal",
+    "name_zh": "SkillPal",
+    "name_en": "SkillPal",
+    "tagline_zh": "AI 编程助手 Skills 发现与管理平台，让你的 AI 搭档更强大。",
+    "tagline_en": "Discover and manage Skills for AI coding assistants — make your AI partner more powerful.",
+    "description_zh": "SkillPal 是一个 AI 编程助手 Skills 的一站式发现、浏览与管理平台。聚合 Claude Code、Cursor、Codex 等多平台 Skills，支持跨平台格式自动转换、一键复制安装，中英双语覆盖全球开发者。",
+    "description_en": "SkillPal is a one-stop platform for discovering, browsing, and managing Skills for AI coding assistants. Aggregates Skills across Claude Code, Cursor, Codex and more, with automatic cross-platform format conversion, one-click copy & install, and bilingual support.",
+    "status": "developing",
+    "theme_color": "#8B5CF6",
+    "icon_emoji": "🧩",
+    "icon_bg": "linear-gradient(135deg, #1a1028, #100a1a)",
+    "icon_border": "rgba(139,92,246,0.15)",
+    "platform": "Web",
+    "platforms": ["Web"],
+    "screenshots_zh": [],
+    "screenshots_en": [],
+    "tech_stack": ["Next.js", "React", "Supabase", "Tailwind CSS"],
+    "links": {},
+    "order": 2
   }
 ]

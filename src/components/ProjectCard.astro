@@ -72,7 +72,7 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
     </div>
   </div>
 
-  <div class="screenshot-strip">
+  {screenshots.length > 0 && <div class="screenshot-strip">
     {screenshots.map((item: string | { label: string; image: string }) => {
       const label = typeof item === 'string' ? item : item.label;
       const image = typeof item === 'string' ? null : item.image;
@@ -82,7 +82,7 @@ const screenshots = isZh ? project.screenshots_zh : project.screenshots_en;
         </div>
       );
     })}
-  </div>
+  </div>}
 
   <div class="card-detail">
     <div class="detail-inner">
